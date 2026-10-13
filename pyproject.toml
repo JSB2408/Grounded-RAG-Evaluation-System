@@ -1,0 +1,36 @@
+[project]
+name = "rag-evaluation-mvp"
+version = "0.2.0"
+description = "Citation-grounded RAG application with evaluation and FastAPI"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+  "fastapi>=0.116.0,<1.0.0",
+  "faiss-cpu>=1.12.0",
+  "numpy>=2.0.0",
+  "openai>=2.0.0",
+  "uvicorn>=0.35.0,<1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "httpx>=0.28.0,<1.0.0",
+  "pytest>=8.0.0,<10.0.0",
+]
+reranker = [
+  "torch==2.13.0",
+  "transformers==5.16.1",
+  "sentence-transformers==5.7.0",
+  "safetensors==0.8.0",
+]
+
+[project.scripts]
+rag = "rag_mvp.cli:main"
+rag-api = "rag_mvp.api:run"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
